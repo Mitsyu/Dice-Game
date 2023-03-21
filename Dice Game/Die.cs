@@ -50,48 +50,48 @@ namespace Dice_Game
                 case 1:
                     Console.WriteLine(" ---------");
                     Console.WriteLine("|         |");
-                    Console.WriteLine("|    o    |");
+                    Console.WriteLine("|    O    |");
                     Console.WriteLine("|         |");
-                    Console.WriteLine(" --------");
+                    Console.WriteLine(" ---------");
                     break;
 
                 case 2:
                     Console.WriteLine(" ---------");
-                    Console.WriteLine("|   o     |");
+                    Console.WriteLine("|  O      |");
                     Console.WriteLine("|         |");
-                    Console.WriteLine("|      o  |");
-                    Console.WriteLine(" --------");
+                    Console.WriteLine("|      O  |");
+                    Console.WriteLine(" ---------");
                     break;
 
                 case 3:
                     Console.WriteLine(" ---------");
-                    Console.WriteLine("|  o      |");
-                    Console.WriteLine("|    o    |");
-                    Console.WriteLine("|      o  |");
+                    Console.WriteLine("|  O      |");
+                    Console.WriteLine("|    O    |");
+                    Console.WriteLine("|      O  |");
                     Console.WriteLine(" ---------");
                     break;
 
                 case 4:
                     Console.WriteLine(" ---------");
-                    Console.WriteLine("|  o   o  |");
+                    Console.WriteLine("|  O   O  |");
                     Console.WriteLine("|         |");
-                    Console.WriteLine("|  o   o  |");
+                    Console.WriteLine("|  O   O  |");
                     Console.WriteLine(" ---------");
                     break;
 
                 case 5:
                     Console.WriteLine(" ---------");
-                    Console.WriteLine("|  o   o  |");
-                    Console.WriteLine("|    o    |");
-                    Console.WriteLine("|  o   o  |");
+                    Console.WriteLine("|  O   O  |");
+                    Console.WriteLine("|    O    |");
+                    Console.WriteLine("|  O   O  |");
                     Console.WriteLine(" ---------");
                     break;
 
                 case 6:
                     Console.WriteLine(" ---------");
-                    Console.WriteLine("|  o   o  |");
-                    Console.WriteLine("|  o   o  |");
-                    Console.WriteLine("|  o   o  |");
+                    Console.WriteLine("|  O   O  |");
+                    Console.WriteLine("|  O   O  |");
+                    Console.WriteLine("|  O   O  |");
                     Console.WriteLine(" ---------");
                     break;
 
