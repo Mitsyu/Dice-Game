@@ -15,6 +15,9 @@ namespace Dice_Game
             Thread.Sleep(500);
             Console.WriteLine();
 
+            Console.WriteLine($"You have ${bankAccount} in your bank account");
+            Console.WriteLine();
+
             while (bankAccount > 0)
             {
                 Console.ResetColor();
@@ -36,7 +39,7 @@ namespace Dice_Game
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("Enter bet amount: ");
+                Console.Write("Enter bet amount: ");
                 betAmount = Convert.ToInt32(Console.ReadLine());    
 
                 if (betAmount == 0)
@@ -47,7 +50,7 @@ namespace Dice_Game
                 if (betAmount > bankAccount)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Not enough money, you only have: $" + bankAccount + " in your bank account.");
+                    Console.WriteLine($"Not enough money, you only have ${bankAccount} in your bank account.");
                     Console.WriteLine();
                     continue;
                 }
@@ -62,42 +65,45 @@ namespace Dice_Game
 
                 Console.WriteLine();
 
-                Console.WriteLine("You rolled a... ", roll1, roll2);
+                Console.WriteLine($"You rolled a {roll1} and {roll2}");
+
                 Thread.Sleep(500);
                 
                 die1.DrawRoll();
                 die2.DrawRoll();
 
-                bool sumDoubles = (roll1 == roll2);
+                //bool sumDoubles = (roll1 == roll2);
                 bool sumEven = (total % 2 == 0);
                 double winnings = 0.00;
 
                 switch (choice)
                 {
-                    
-                    case 0:
-                        if (sumDoubles)
+
+                    case 1:
+                        if (choice == 1 && roll1 == roll2)
                         {
                             winnings = betAmount * 2;
                             bankAccount += winnings;
-                            Console.WriteLine("You won ${0.f2}");
+                            Console.WriteLine($"You won ${winnings} !!!");
                         }
-                        break;
-
-                    case 1:
-                        if (sumEven)
+                        
+                        else 
                         {
-
+                            Console.WriteLine($"You lost ${betAmount}");
+                            bankAccount -= betAmount;
                         }
                         break;
+
 
                     case 2:
-                        if (sumEven)
+                        if (choice == 2)
                         {
 
                         }
                         break;
 
+
+                        
                 }
 
                 if (total == choice)
@@ -106,8 +112,34 @@ namespace Dice_Game
                     bankAccount -= betAmount;
 
                 }
-               
-                Console.WriteLine("You have $" + bankAccount + " in your bank account");
+
+                if (bankAccount <= 0)
+                {
+                    Console.WriteLine("GAME OVER. You have no more money to bet");
+                    Console.WriteLine();
+                    Console.Write("Add more money to bank account and play again? (y/n):");
+
+                    string playAgain = Console.ReadLine();
+                    if (playAgain != "y")
+                    {
+                        Console.WriteLine("Enter deposit amount: ");
+                        double depositAmount = double.Parse(Console.ReadLine());
+                        break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"You now have ${bankAccount} in your bank account, play again? (y/n):");
+
+
+                    string playAgain = Console.ReadLine();
+                    if (playAgain != "y")
+                        break;
+                }
+
+                Console.WriteLine();
 
             }
         }
