@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Dice_Game
 {
@@ -55,7 +56,7 @@ namespace Dice_Game
                     continue;
                 }
 
-
+                Console.WriteLine();
                 Console.WriteLine("Rolling Dice...");
                 Thread.Sleep(800);
 
@@ -72,8 +73,6 @@ namespace Dice_Game
                 die1.DrawRoll();
                 die2.DrawRoll();
 
-                //bool sumDoubles = (roll1 == roll2);
-                bool sumEven = (total % 2 == 0);
                 double winnings = 0.00;
 
                 switch (choice)
@@ -85,25 +84,71 @@ namespace Dice_Game
                             winnings = betAmount * 2;
                             bankAccount += winnings;
                             Console.WriteLine($"You won ${winnings} !!!");
+                            Console.WriteLine();
+                            Console.WriteLine($"You have ${bankAccount} in your bank account");
                         }
                         
                         else 
                         {
                             Console.WriteLine($"You lost ${betAmount}");
                             bankAccount -= betAmount;
+                            Console.WriteLine();
+                            Console.WriteLine($"You now have ${bankAccount} in your bank account");
                         }
                         break;
-
-
+     
                     case 2:
-                        if (choice == 2)
+                        if (choice == 2 && roll1 == roll2)
                         {
-
+                            Console.WriteLine($"You lost ${betAmount}");
+                            bankAccount -= betAmount;
+                            Console.WriteLine();
+                            Console.WriteLine($"You now have ${bankAccount} in your bank account");
+                        }
+                        else
+                        {
+                            winnings = betAmount / 2;
+                            bankAccount += winnings;
+                            Console.WriteLine($"Woohoo! You won ${winnings} !!");
+                            Console.WriteLine();
+                            Console.WriteLine($"You have ${bankAccount} in your bank account");
                         }
                         break;
 
+                    case 3:
+                        if(choice == 3 && total % 2 == 0)
+                        {
+                            winnings += betAmount;
+                            Console.WriteLine("WooHoo! You won $" + betAmount + ".");
+                            Console.WriteLine();
+                            Console.WriteLine($"You have ${bankAccount} in your bank account");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"You lost ${betAmount}");
+                            bankAccount -= betAmount;
+                            Console.WriteLine();
+                            Console.WriteLine($"You now have ${bankAccount} in your bank account");
+                        }
+                        break;
 
-                        
+                    case 4:
+                        if(choice == 4 && total % 2 != 0)
+                        {
+                            winnings += betAmount;
+                            Console.WriteLine($"Woohoo! You won ${winnings} !!");
+                            Console.WriteLine();
+                            Console.WriteLine($"You have ${bankAccount} in your bank account");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"You lost ${betAmount}");
+                            bankAccount -= betAmount;
+                            Console.WriteLine();
+                            Console.WriteLine($"You now have ${bankAccount} in your bank account");
+                        }
+                        break;
+
                 }
 
                 if (total == choice)
@@ -118,25 +163,28 @@ namespace Dice_Game
                     Console.WriteLine("GAME OVER. You have no more money to bet");
                     Console.WriteLine();
                     Console.Write("Add more money to bank account and play again? (y/n):");
-
-                    string playAgain = Console.ReadLine();
-                    if (playAgain != "y")
-                    {
-                        Console.WriteLine("Enter deposit amount: ");
-                        double depositAmount = double.Parse(Console.ReadLine());
-                        break;
-                    }
-                }
-                else
-                {
+                    string tryAgain = Console.ReadLine();
                     Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"You now have ${bankAccount} in your bank account, play again? (y/n):");
 
+                    switch (tryAgain)
+                    {
+                        case "y":
+                            Console.Write("Enter deposit amount: ");
+                            double depositAmount = double.Parse(Console.ReadLine());
+                            bankAccount += depositAmount;
+                            Thread.Sleep(500);
+                            Console.WriteLine();
+                            Console.WriteLine($"You now have ${bankAccount} in your bank account");
+                            break;
 
-                    string playAgain = Console.ReadLine();
-                    if (playAgain != "y")
-                        break;
+                        case "n":
+                            Console.WriteLine();
+                            Console.WriteLine("See you next time.");
+                            break;
+
+                    }
+                  
+                    
                 }
 
                 Console.WriteLine();
